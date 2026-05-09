@@ -1,5 +1,12 @@
-.main { min-height: 60vh; }
-.mainWithOffset { padding-top: 112px; min-height: 60vh; }
-@media (max-width: 768px) {
-  .mainWithOffset { padding-top: 72px; }
+/* Layout.module.css */
+
+.main {
+  /* Home page: hero is full viewport, navbar overlays it */
+  min-height: 100vh;
+}
+
+.mainWithOffset {
+  /* All other pages: offset below fixed navbar (≈ 68px) */
+  padding-top: 68px;
+  min-height: 100vh;
 }
