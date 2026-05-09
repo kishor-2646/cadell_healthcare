@@ -7,17 +7,47 @@
   background: var(--navy);
 }
 
+/* ─── BACKGROUND IMAGE ──────────────────────────────────────────────
+   To use your own photo, replace the URL below with your image path.
+   Example: url('/your-photo.jpg')
+   Recommended: a high-res pharmaceutical/medical lab photo (1920×1080+)
+   ────────────────────────────────────────────────────────────────── */
 .bg { position: absolute; inset: 0; }
+
+.bgPhoto {
+  position: absolute; inset: 0;
+  background-image: url('/src/assets/hero.png');
+  background-size: cover;
+  background-position: center 40%;
+  background-repeat: no-repeat;
+  /* Slight zoom-in on load */
+  animation: heroZoom 8s ease-out both;
+}
+
+/* Dark gradient overlay — keeps text legible over any photo */
 .bgGrad {
   position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 60% at 60% 40%, rgba(26,58,107,0.9) 0%, rgba(10,22,40,0.97) 70%);
+  background:
+    linear-gradient(
+      105deg,
+      rgba(10,22,40,0.82) 0%,
+      rgba(10,22,40,0.60) 50%,
+      rgba(10,22,40,0.35) 100%
+    );
 }
+
+/* Subtle grid texture on top */
 .bgGrid {
   position: absolute; inset: 0;
   background-image:
-    linear-gradient(rgba(201,168,76,0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201,168,76,0.05) 1px, transparent 1px);
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
   background-size: 60px 60px;
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1.06); }
+  to   { transform: scale(1.00); }
 }
 
 .inner {
@@ -26,7 +56,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 60px;
-  padding: 80px 0;
+  padding: 160px 0 80px;
 }
 
 /* Content */

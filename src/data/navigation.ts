@@ -12,5 +12,4 @@ export const navItems: NavItem[] = [
     ]
   },
   { label: 'Contact', path: '/contact' },
-  { label: 'Login', path: '/login' },
 ];

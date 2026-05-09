@@ -1,2 +1,5 @@
-.main { padding-top: 112px; min-height: 60vh; }
-@media (max-width: 768px) { .main { padding-top: 72px; } }
+.main { min-height: 60vh; }
+.mainWithOffset { padding-top: 112px; min-height: 60vh; }
+@media (max-width: 768px) {
+  .mainWithOffset { padding-top: 72px; }
+}

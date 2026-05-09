@@ -7,6 +7,7 @@ export const HeroSection: React.FC = () => (
   <section className={styles.hero}>
     {/* Background */}
     <div className={styles.bg}>
+      <div className={styles.bgPhoto} />
       <div className={styles.bgGrad} />
       <div className={styles.bgGrid} />
     </div>

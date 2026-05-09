@@ -20,7 +20,8 @@ export const Navbar: React.FC = () => {
 
   return (
     <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
-      {/* Top Bar */}
+
+      {/* Top Info Bar */}
       <div className={styles.topBar}>
         <div className="container">
           <div className={styles.topInner}>
@@ -40,52 +41,55 @@ export const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Nav */}
-      <nav className={styles.nav}>
-        <div className="container">
-          <div className={styles.navInner}>
-            {/* Logo */}
-            <Link to="/" className={styles.logo}>
-              <div className={styles.logoMark}>
-                <span className={styles.logoC}>C</span>
-              </div>
-              <div className={styles.logoText}>
-                <span className={styles.logoName}>cadell</span>
-                <span className={styles.logoSub}>Healthcare Pvt. Ltd.</span>
-              </div>
-            </Link>
+      {/* Floating Glass Pill Nav */}
+      <div className={styles.navWrap}>
+        <nav className={styles.nav}>
 
-            {/* Desktop Nav */}
-            <ul className={styles.navList}>
-              {navItems.map((item) => (
-                <li key={item.path} className={`${styles.navItem} ${item.children ? styles.hasChildren : ''}`}>
-                  <Link
-                    to={item.path}
-                    className={`${styles.navLink} ${location.pathname === item.path ? styles.active : ''}`}
-                  >
-                    {item.label}
-                    {item.children && <FiChevronDown size={14} />}
-                  </Link>
-                  {item.children && (
-                    <ul className={styles.dropdown}>
-                      {item.children.map(child => (
-                        <li key={child.path}>
-                          <Link to={child.path} className={styles.dropdownLink}>{child.label}</Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </li>
-              ))}
-            </ul>
+          {/* Logo */}
+          <Link to="/" className={styles.logo}>
+            <div className={styles.logoMark}>
+              <span className={styles.logoC}>C</span>
+            </div>
+            <div className={styles.logoText}>
+              <span className={styles.logoName}>cadell</span>
+              <span className={styles.logoSub}>Healthcare Pvt. Ltd.</span>
+            </div>
+          </Link>
 
-            {/* Mobile Toggle */}
+          {/* Desktop Nav Links */}
+          <ul className={styles.navList}>
+            {navItems.map((item) => (
+              <li key={item.path} className={`${styles.navItem} ${item.children ? styles.hasChildren : ''}`}>
+                <Link
+                  to={item.path}
+                  className={`${styles.navLink} ${location.pathname === item.path ? styles.active : ''}`}
+                >
+                  {item.label}
+                  {item.children && <FiChevronDown size={13} />}
+                </Link>
+                {item.children && (
+                  <ul className={styles.dropdown}>
+                    {item.children.map(child => (
+                      <li key={child.path}>
+                        <Link to={child.path} className={styles.dropdownLink}>{child.label}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </li>
+            ))}
+          </ul>
+
+          {/* Right: Login pill button + mobile toggle */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <Link to="/login" className={styles.loginBtn}>Login</Link>
             <button className={styles.menuBtn} onClick={() => setMenuOpen(!menuOpen)}>
               {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
             </button>
           </div>
-        </div>
-      </nav>
+
+        </nav>
+      </div>
 
       {/* Mobile Drawer */}
       <div className={`${styles.drawer} ${menuOpen ? styles.open : ''}`}>
@@ -106,14 +110,23 @@ export const Navbar: React.FC = () => {
                   )}
                 </>
               ) : (
-                <Link to={item.path} className={`${styles.drawerItem} ${location.pathname === item.path ? styles.drawerActive : ''}`}>
+                <Link
+                  to={item.path}
+                  className={`${styles.drawerItem} ${location.pathname === item.path ? styles.drawerActive : ''}`}
+                >
                   {item.label}
                 </Link>
               )}
             </li>
           ))}
+          <li>
+            <Link to="/login" className={`${styles.drawerItem} ${location.pathname === '/login' ? styles.drawerActive : ''}`}>
+              Login
+            </Link>
+          </li>
         </ul>
       </div>
+
     </header>
   );
 };
