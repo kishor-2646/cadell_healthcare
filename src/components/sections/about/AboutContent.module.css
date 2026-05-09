@@ -1,0 +1,81 @@
+/* Story */
+.story { background: var(--white); }
+.storyGrid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
+.storyRight p {
+  font-size: 16px; color: var(--text-secondary);
+  line-height: 1.8; margin-bottom: 20px;
+}
+.storyRight em { font-style: italic; color: var(--navy); font-weight: 600; }
+.signature {
+  font-family: var(--font-display);
+  font-size: 28px; font-style: italic;
+  color: var(--text-light);
+  margin-top: 32px;
+}
+
+/* Mission & Vision */
+.mv { background: var(--navy); }
+.mvGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.mvCard {
+  padding: 48px 40px;
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 16px;
+  text-align: center;
+  background: rgba(255,255,255,0.03);
+  transition: all 0.3s;
+}
+.mvCard:hover { border-color: var(--gold); background: rgba(201,168,76,0.04); transform: translateY(-4px); }
+.mvIcon { font-size: 40px; margin-bottom: 16px; }
+.mvTitle {
+  font-family: var(--font-display);
+  font-size: 28px; font-weight: 700;
+  color: var(--white); margin-bottom: 16px;
+}
+.mvDivider { width: 48px; height: 3px; background: var(--gold); margin: 0 auto 24px; }
+.mvText { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.8; }
+
+/* Testimonials */
+.testimonials { background: var(--bg-light); }
+.testGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+
+.testIllustration {
+  position: relative;
+  height: 380px;
+  display: flex; align-items: center; justify-content: center;
+}
+.testBg {
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+  border-radius: 24px;
+  opacity: 0.08;
+}
+.testEmoji { font-size: 120px; }
+
+.testCard {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px;
+  margin: 24px 0;
+  box-shadow: var(--shadow-md);
+}
+.stars { color: var(--gold); font-size: 18px; letter-spacing: 2px; margin-bottom: 16px; }
+.testName { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text-primary); }
+.testRole { font-size: 12px; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 16px; }
+.testContent { font-size: 15px; color: var(--text-secondary); line-height: 1.7; font-style: italic; }
+
+.dots { display: flex; gap: 8px; }
+.dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: var(--border);
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s;
+}
+.dotActive { background: var(--gold); transform: scale(1.3); }
+
+@media (max-width: 900px) {
+  .storyGrid, .mvGrid, .testGrid { grid-template-columns: 1fr; gap: 40px; }
+  .testIllustration { height: 200px; }
+}

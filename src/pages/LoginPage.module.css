@@ -1,0 +1,64 @@
+.section {
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  position: relative; padding: 40px 24px;
+  background: var(--navy);
+}
+.bg {
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.card {
+  position: relative; z-index: 1;
+  background: var(--white);
+  border-radius: 20px;
+  padding: 48px 40px;
+  width: 100%; max-width: 440px;
+  box-shadow: var(--shadow-lg);
+}
+.logoArea { display: flex; align-items: center; gap: 12px; margin-bottom: 32px; justify-content: center; }
+.logoMark {
+  width: 44px; height: 44px;
+  background: var(--navy); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.logoMark span { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--gold); }
+.logoName { font-family: var(--font-display); font-size: 22px; font-weight: 700; color: var(--navy); }
+.logoSub { font-size: 10px; color: var(--slate); letter-spacing: 0.05em; }
+
+.title { font-family: var(--font-display); font-size: 28px; font-weight: 700; color: var(--text-primary); text-align: center; margin-bottom: 8px; }
+.sub { font-size: 14px; color: var(--text-light); text-align: center; margin-bottom: 32px; }
+
+.field {
+  position: relative; margin-bottom: 16px;
+  display: flex; align-items: center;
+}
+.fieldIcon {
+  position: absolute; left: 14px;
+  color: var(--text-light); font-size: 16px;
+}
+.input {
+  width: 100%; padding: 13px 16px 13px 44px;
+  border: 1.5px solid var(--border); border-radius: 6px;
+  font-size: 15px; font-family: var(--font-body);
+  color: var(--text-primary); outline: none;
+  transition: border-color 0.2s;
+}
+.input:focus { border-color: var(--navy); }
+.toggle {
+  position: absolute; right: 14px;
+  color: var(--text-light); font-size: 16px;
+  cursor: pointer; background: none; border: none;
+}
+
+.submit {
+  width: 100%; margin-top: 8px;
+  padding: 14px;
+  background: var(--navy); color: var(--white);
+  font-size: 15px; font-weight: 700; letter-spacing: 0.05em;
+  border-radius: 6px; border: none; cursor: pointer;
+  transition: all 0.25s;
+}
+.submit:hover { background: var(--gold); color: var(--navy); }

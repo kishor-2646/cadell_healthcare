@@ -1,0 +1,31 @@
+.hero {
+  background: var(--navy);
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.overlay {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(26,58,107,0.5) 0%, transparent 70%);
+}
+.inner { position: relative; z-index: 1; text-align: center; }
+.eyebrow {
+  display: block;
+  font-size: 11px; font-weight: 700;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 12px;
+}
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
