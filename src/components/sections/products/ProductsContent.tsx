@@ -20,12 +20,7 @@ const productImages: Record<string, string> = {
   'FITPRO-40':     fitpro40,
 };
 
-const categoryColors: Record<string, string> = {
-  'Cardiology':       '#e53e3e',
-  'Diabetology':      '#3182ce',
-  'Gastroenterology': '#38a169',
-  'Antibiotics':      '#d69e2e',
-};
+const categoryColors: Record<string, string> = {}; // unused — kept for safety
 
 export const ProductGrid: React.FC = () => {
   const [active, setActive] = useState('All');
@@ -69,23 +64,17 @@ export const ProductGrid: React.FC = () => {
                       }}
                     />
                   ) : null}
-                  {/* fallback — shown when no image or load fails */}
                   <div
                     className={styles.placeholder}
                     style={imgSrc ? { display: 'none' } : {}}
                   >
                     <span className={styles.placeholderText}>{p.name}</span>
                   </div>
-                  <span
-                    className={styles.badge}
-                    style={{ background: categoryColors[p.category] || '#718096' }}
-                  >
-                    {p.category}
-                  </span>
                 </div>
 
                 {/* ── CARD BODY ── */}
                 <div className={styles.cardBody}>
+                  <span className={styles.categoryTag}>{p.category}</span>
                   <h3 className={styles.name}>{p.name}</h3>
                   <p className={styles.generic}>{p.genericName}</p>
                   <a href="#" className={styles.learnMore}>Learn More →</a>

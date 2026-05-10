@@ -55,39 +55,44 @@
 }
 .card:hover .productImg { transform: scale(1.04); }
 
-.badge {
-  position: absolute; top: 12px; right: 12px;
-  padding: 4px 10px;
-  border-radius: 100px;
-  font-size: 11px; font-weight: 700;
-  color: var(--white);
-  letter-spacing: 0.05em;
-}
 
 .cardBody {
-  padding: 20px;
-  background: linear-gradient(
-    145deg,
-    #0a1628 0%,
-    #0f2044 35%,
-    #132855 60%,
-    #1a3468 80%,
-    #0e1f45 100%
-  );
-  position: relative;
+  padding: 18px 20px 20px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
+
+.categoryTag {
+  display: inline-block;
+  background: #eef2f8;
+  color: #4a6fa5;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+  align-self: flex-start;
+}
+
 .name {
   font-family: var(--font-display);
-  font-size: 18px; font-weight: 700;
-  color: #c9a84c; margin-bottom: 6px;
+  font-size: 17px; font-weight: 700;
+  color: var(--navy); margin-bottom: 6px;
 }
-.generic { font-size: 13px; color: rgba(255,255,255,0.72); line-height: 1.5; margin-bottom: 16px; }
+.generic { font-size: 13px; color: var(--text-secondary); line-height: 1.55; margin-bottom: 16px; }
 .learnMore {
   font-size: 13px; font-weight: 700;
-  color: #ffffff;
-  transition: all 0.2s;
+  color: var(--navy);
+  border-bottom: 1px solid var(--navy);
+  padding-bottom: 1px;
+  align-self: flex-start;
+  transition: color 0.2s, border-color 0.2s;
 }
-.learnMore:hover { color: var(--gold); letter-spacing: 0.05em; }
+.learnMore:hover { color: var(--gold); border-color: var(--gold); }
 
 @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
 

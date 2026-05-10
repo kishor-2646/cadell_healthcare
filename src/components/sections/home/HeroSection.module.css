@@ -281,11 +281,7 @@
 }
 
 .logoCard:hover {
-  transform: rotate(0deg);
-  box-shadow:
-    0 4px 8px rgba(0,0,0,0.12),
-    0 16px 40px rgba(0,0,0,0.28),
-    0 1px 0 rgba(255,255,255,0.15) inset;
+  /* hover effect removed */
 }
 
 .logoCardInner {
@@ -296,7 +292,7 @@
 }
 
 .logoImg {
-  width: 200px;
+  width: 260px;
   height: auto;
   object-fit: contain;
   display: block;
@@ -333,53 +329,42 @@
 /* ── STATS ROW — editorial, no glass panel ── */
 .statsRow {
   display: flex;
-  align-items: flex-start;
-  gap: 0;
+  align-items: stretch;
+  gap: 10px;
   width: 100%;
   padding: 0;
 }
 
 .statItem {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding: 0 28px;
-  gap: 4px;
-  flex: 1;
+  gap: 6px;
+  padding: 16px 18px;
+  background: #0b1a30;
+  border-radius: 12px;
   cursor: default;
 }
 
-.statItem:first-child {
-  padding-left: 0;
-}
+.statItem:first-child { padding-left: 18px; }
+.statItem:last-child  { padding-right: 18px; }
 
-.statItem:last-child {
-  padding-right: 0;
-}
-
-.statVRule {
-  width: 1px;
-  height: 52px;
-  background: rgba(255, 255, 255, 0.18);
-  flex-shrink: 0;
-  align-self: center;
-}
+.statVRule { display: none; }
 
 .statNumber {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 42px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 36px;
   font-weight: 900;
   color: #ffffff;
   line-height: 1;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
 }
 
-.statNumber:hover {
-  color: #c9a84c;
-}
+.statNumber:hover { color: #ffffff; }
 
 .sup {
-  font-size: 18px;
+  font-size: 16px;
   color: #c9a84c;
   font-weight: 700;
   vertical-align: super;
@@ -387,19 +372,21 @@
 
 .statLabel {
   font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
-  letter-spacing: 0.08em;
+  font-size: 9.5px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   line-height: 1.5;
 }
 
-.statHRule {
+.statHRule { display: none; }
+
+/* ── STATS CARD — wrapper, no extra styling needed ── */
+.statsCard {
   width: 100%;
-  height: 1px;
-  background: rgba(255, 255, 255, 0.12);
-  margin: 24px 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* ── PULL QUOTE — replaces logo card ── */

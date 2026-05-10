@@ -42,7 +42,6 @@ export const ServicesSection: React.FC = () => {
         <div className={styles.grid}>
           {services.map((s, i) => (
             <div key={i} className={`${styles.card} ${isVisible ? styles.visible : ''}`} style={{ transitionDelay: `${i * 0.12}s` }}>
-              <div className={styles.icon}>{s.icon}</div>
               <span className={styles.tag}>{s.tag}</span>
               <h3 className={styles.title}>{s.title}</h3>
               {s.desc && <p className={styles.desc}>{s.desc}</p>}

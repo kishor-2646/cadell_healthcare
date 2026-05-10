@@ -6,13 +6,6 @@ import { SectionHeader } from '../../ui/SectionHeader';
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 import styles from './ProductsPreview.module.css';
 
-const categoryColors: Record<string, string> = {
-  'Cardiology': '#e53e3e',
-  'Diabetology': '#3182ce',
-  'Gastroenterology': '#38a169',
-  'Antibiotics': '#d69e2e',
-};
-
 export const ProductsPreview: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation();
 
@@ -40,7 +33,6 @@ export const ProductsPreview: React.FC = () => {
                     alt={p.name}
                     className={styles.productImg}
                     onError={(e) => {
-                      // fallback: hide img and show placeholder sibling
                       (e.currentTarget as HTMLImageElement).style.display = 'none';
                       const sibling = e.currentTarget.nextElementSibling as HTMLElement;
                       if (sibling) sibling.style.display = 'flex';
@@ -50,11 +42,9 @@ export const ProductsPreview: React.FC = () => {
                 <div className={styles.placeholder} style={p.image ? { display: 'none' } : {}}>
                   <span className={styles.placeholderText}>{p.name}</span>
                 </div>
-                <span className={styles.badge} style={{ background: categoryColors[p.category] || '#718096' }}>
-                  {p.category}
-                </span>
               </div>
               <div className={styles.cardBody}>
+                <span className={styles.categoryTag}>{p.category}</span>
                 <h3 className={styles.name}>{p.name}</h3>
                 <p className={styles.generic}>{p.genericName}</p>
                 <Link to="/products" className={styles.learnMore}>Learn More →</Link>
