@@ -93,7 +93,7 @@
   z-index: 2;
   flex: 1;
   display: flex;
-  align-items: stretch;       /* both columns share identical height */
+  align-items: stretch;
   justify-content: center;
   gap: 40px;
   padding: 0 80px;

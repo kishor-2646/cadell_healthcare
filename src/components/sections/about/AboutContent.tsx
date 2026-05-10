@@ -35,6 +35,7 @@ function useReveal(threshold = 0.15) {
 export const AboutStory: React.FC = () => {
   const left = useReveal(0.2);
   const right = useReveal(0.15);
+  const photo = useReveal(0.1);
 
   return (
     <section className={`${styles.story} section-pad`}>
@@ -81,6 +82,34 @@ export const AboutStory: React.FC = () => {
           </div>
 
         </div>
+
+        {/* ── FULL-WIDTH PHOTO + QUOTE ── */}
+        <div
+          ref={photo.ref}
+          className={`${styles.storyPhotoBlock} ${photo.visible ? styles.revealIn : styles.revealOut}`}
+        >
+          <div className={styles.storyPhotoWrap}>
+            <img
+              src="/src/assets/about-story.png"
+              alt="Cadell Healthcare facility"
+              className={styles.storyPhoto}
+            />
+            {/* dark overlay + vignette */}
+            <div className={styles.storyPhotoOverlay} />
+            <div className={styles.storyPhotoVignette} />
+            {/* quote floated over the image */}
+            <div className={styles.storyPhotoQuote}>
+              <svg className={styles.quoteIcon} width="36" height="36" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+              </svg>
+              <p className={styles.quoteText}>
+                In the battle against deadly lifestyle diseases, we stand committed to Saving Life Together.
+              </p>
+              <span className={styles.quoteAuthor}>— B. Atatuk, Founder &amp; Managing Director</span>
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
   );

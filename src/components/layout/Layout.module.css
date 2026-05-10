@@ -1,12 +1,10 @@
 /* Layout.module.css */
+/* Header is now sticky — no padding-top needed on main */
 
 .main {
-  /* Home page: hero is full viewport, navbar overlays it */
   min-height: 100vh;
 }
 
 .mainWithOffset {
-  /* All other pages: offset below fixed navbar (≈ 68px) */
-  padding-top: 68px;
   min-height: 100vh;
 }
