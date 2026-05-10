@@ -2,7 +2,7 @@
 .story { background: var(--white); }
 .storyGrid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
 
-/* ── LEFT SIDE — fade + slide up on scroll ── */
+/* ── SCROLL REVEAL ── */
 .revealOut {
   opacity: 0;
   transform: translateY(32px);
@@ -14,47 +14,38 @@
   transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
 }
 
-/* ── RIGHT SIDE — typewriter paragraphs ── */
-.storyRight p, .typePara {
+/* ── RIGHT SIDE — clean paragraphs ── */
+.storyRight p {
   font-size: 16px; color: var(--text-secondary);
-  line-height: 1.8; margin-bottom: 20px;
-  min-height: 1.8em; /* prevent layout jump while typing */
+  line-height: 1.85; margin-bottom: 22px;
 }
 .storyRight em { font-style: italic; color: var(--navy); font-weight: 600; }
 
-/* blinking cursor at end of typing text */
-.cursor {
-  display: inline-block;
-  width: 2px;
-  height: 1em;
-  background: var(--gold);
-  margin-left: 2px;
-  vertical-align: text-bottom;
-  border-radius: 1px;
-  animation: blink 0.9s step-end infinite;
-}
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
-
-/* ── SIGNATURE — fade in after paragraphs ── */
-.sigOut {
-  opacity: 0;
-  transform: translateX(-12px);
-  transition: opacity 0.6s var(--ease) 0.2s, transform 0.6s var(--ease) 0.2s;
-}
-.sigIn {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 0.6s var(--ease) 0.2s, transform 0.6s var(--ease) 0.2s;
-}
-
-.signature {
+/* ── LEFT — pull quote + founder sig ── */
+.storyPullQuote {
   font-family: var(--font-display);
-  font-size: 28px; font-style: italic;
+  font-size: 16px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin: 28px 0 16px 0;
+  padding-left: 16px;
+  border-left: 2px solid var(--gold);
+  max-width: 320px;
+}
+.storyPullQuote em {
+  color: var(--navy);
+  font-weight: 600;
+}
+
+.founderSig {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-style: italic;
   color: var(--text-light);
-  margin-top: 32px;
+  margin-top: 8px;
+  padding-left: 16px;
 }
 
 /* ════════════════════════════════════════════════
@@ -196,7 +187,20 @@
   border-radius: 24px;
   opacity: 0.08;
 }
-.testEmoji { font-size: 120px; }
+.testQuoteMark {
+  font-family: var(--font-display);
+  font-size: 200px;
+  font-style: italic;
+  font-weight: 900;
+  color: var(--navy);
+  opacity: 0.08;
+  line-height: 0.8;
+  user-select: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 
 .testCard {
   background: var(--white);
