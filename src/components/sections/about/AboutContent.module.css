@@ -1,11 +1,55 @@
 /* Story */
 .story { background: var(--white); }
 .storyGrid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
-.storyRight p {
+
+/* ── LEFT SIDE — fade + slide up on scroll ── */
+.revealOut {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+}
+.revealIn {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.75s var(--ease), transform 0.75s var(--ease);
+}
+
+/* ── RIGHT SIDE — typewriter paragraphs ── */
+.storyRight p, .typePara {
   font-size: 16px; color: var(--text-secondary);
   line-height: 1.8; margin-bottom: 20px;
+  min-height: 1.8em; /* prevent layout jump while typing */
 }
 .storyRight em { font-style: italic; color: var(--navy); font-weight: 600; }
+
+/* blinking cursor at end of typing text */
+.cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background: var(--gold);
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  border-radius: 1px;
+  animation: blink 0.9s step-end infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── SIGNATURE — fade in after paragraphs ── */
+.sigOut {
+  opacity: 0;
+  transform: translateX(-12px);
+  transition: opacity 0.6s var(--ease) 0.2s, transform 0.6s var(--ease) 0.2s;
+}
+.sigIn {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 0.6s var(--ease) 0.2s, transform 0.6s var(--ease) 0.2s;
+}
+
 .signature {
   font-family: var(--font-display);
   font-size: 28px; font-style: italic;
