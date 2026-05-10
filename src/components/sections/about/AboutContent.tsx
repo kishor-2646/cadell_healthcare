@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { testimonials } from '../../../data/testimonials';
 import { SectionHeader } from '../../ui/SectionHeader';
 import styles from './AboutContent.module.css';
 
-/* ── image paths — drop your own into src/assets/mv/ ── */
-const carouselImages = [
-  '/src/assets/mv/slide1.png',
-  '/src/assets/mv/slide2.png',
-  '/src/assets/mv/slide3.png',
-  '/src/assets/mv/slide4.png',
-  '/src/assets/mv/slide5.png',
-  '/src/assets/mv/slide6.png',
-];
+/* ── image imports — Vite resolves these at build time ── */
+import slide1 from '../../../assets/mv/slide1.png';
+import slide2 from '../../../assets/mv/slide2.png';
+import slide3 from '../../../assets/mv/slide3.png';
+import slide4 from '../../../assets/mv/slide4.png';
+import slide5 from '../../../assets/mv/slide5.png';
+import slide6 from '../../../assets/mv/slide6.png';
+
+const carouselImages = [slide1, slide2, slide3, slide4, slide5, slide6];
 
 export const AboutStory: React.FC = () => (
   <section className={`${styles.story} section-pad`}>
@@ -34,95 +34,45 @@ export const AboutStory: React.FC = () => (
   </section>
 );
 
-const SLIDE_W = 300;   // base slide width px
-const SLIDE_GAP = 16;  // gap px
-const STEP = SLIDE_W + SLIDE_GAP;
+// Duplicate slides 4× so the CSS marquee never shows a gap
+const marqueeSlides = [...carouselImages, ...carouselImages, ...carouselImages, ...carouselImages];
 
-export const MissionVision: React.FC = () => {
-  const bgRef   = useRef<HTMLDivElement>(null);
-  const rafRef  = useRef<number>(0);
-  const posRef  = useRef<number>(0);
-  const totalRef = useRef<number>(0);
-
-  // duplicate images for seamless loop
-  const slides = [...carouselImages, ...carouselImages, ...carouselImages];
-
-  useEffect(() => {
-    const bg = bgRef.current;
-    if (!bg) return;
-
-    // total width of ONE full set
-    totalRef.current = carouselImages.length * STEP;
-
-    const tick = () => {
-      posRef.current += 0.5; // speed px/frame — adjust to taste
-      // reset when we've scrolled one full set
-      if (posRef.current >= totalRef.current) posRef.current = 0;
-
-      const containerCx = bg.offsetWidth / 2;
-
-      Array.from(bg.children).forEach((child, idx) => {
-        const el = child as HTMLElement;
-        // center-x of this slide in the scrolling track
-        const slideCx = idx * STEP + SLIDE_W / 2 - posRef.current;
-        const dist    = Math.abs(containerCx - slideCx);
-        const maxDist = containerCx + SLIDE_W;
-        // scale: 1.0 at center → 0.72 at far edges
-        const scale   = Math.max(0.72, 1.0 - (dist / maxDist) * 0.60);
-        // opacity: 1.0 at center → 0.35 at far edges
-        const opacity = Math.max(0.35, 1.0 - (dist / maxDist) * 1.0);
-
-        el.style.transform = `translateX(${-posRef.current}px) scaleY(${scale})`;
-        el.style.opacity   = String(opacity);
-        // each slide has its own translateX baseline
-        el.style.transform = `translateX(${idx * STEP - posRef.current}px) scale(${scale})`;
-      });
-
-      rafRef.current = requestAnimationFrame(tick);
-    };
-
-    rafRef.current = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(rafRef.current);
-  }, []);
-
-  return (
-    <section className={styles.mv}>
-      {/* ── CAROUSEL BACKGROUND ── */}
-      <div className={styles.carouselBg}>
-        {/* slides are absolutely positioned children of carouselBg */}
-        <div className={styles.carouselTrack} ref={bgRef}>
-          {slides.map((src, i) => (
-            <div key={i} className={styles.carouselSlide} style={{ left: 0, top: 0 }}>
-              <img src={src} alt="" className={styles.carouselImg} />
-            </div>
-          ))}
-        </div>
-        {/* dark navy overlay */}
-        <div className={styles.carouselOverlay} />
-        {/* vignette */}
-        <div className={styles.carouselVignette} />
+export const MissionVision: React.FC = () => (
+  <section className={styles.mv}>
+    {/* ── INFINITE MARQUEE BACKGROUND ── */}
+    <div className={styles.carouselBg}>
+      <div className={styles.marqueeTrack}>
+        {marqueeSlides.map((src, i) => (
+          <div key={i} className={styles.marqueeSlide}>
+            <img src={src} alt="" className={styles.marqueeImg} />
+          </div>
+        ))}
       </div>
+      {/* dark overlay */}
+      <div className={styles.carouselOverlay} />
+      {/* vignette */}
+      <div className={styles.carouselVignette} />
+    </div>
 
-      {/* ── CARDS ── */}
-      <div className={`${styles.mvInner} section-pad`}>
-        <div className="container">
-          <div className={styles.mvGrid}>
-            <div className={styles.mvCard}>
-              <h2 className={styles.mvTitle}>Our Mission</h2>
-              <div className={styles.mvDivider} />
-              <p className={styles.mvText}>Our mission is to give superior products having high quality standards at affordable cost & to improve the quality standards of the society to enable them to lead healthier, happier and more active lives.</p>
-            </div>
-            <div className={styles.mvCard}>
-              <h2 className={styles.mvTitle}>Our Vision</h2>
-              <div className={styles.mvDivider} />
-              <p className={styles.mvText}>With the available resources, we have a vision to expand our presence across the world & become the most successful, respected and patient friendly pharmaceutical company.</p>
-            </div>
+    {/* ── CARDS ── */}
+    <div className={`${styles.mvInner} section-pad`}>
+      <div className="container">
+        <div className={styles.mvGrid}>
+          <div className={styles.mvCard}>
+            <h2 className={styles.mvTitle}>Our Mission</h2>
+            <div className={styles.mvDivider} />
+            <p className={styles.mvText}>Our mission is to give superior products having high quality standards at affordable cost & to improve the quality standards of the society to enable them to lead healthier, happier and more active lives.</p>
+          </div>
+          <div className={styles.mvCard}>
+            <h2 className={styles.mvTitle}>Our Vision</h2>
+            <div className={styles.mvDivider} />
+            <p className={styles.mvText}>With the available resources, we have a vision to expand our presence across the world & become the most successful, respected and patient friendly pharmaceutical company.</p>
           </div>
         </div>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export const Testimonials: React.FC = () => {
   const [active, setActive] = useState(0);

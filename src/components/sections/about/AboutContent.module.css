@@ -14,7 +14,7 @@
 }
 
 /* ════════════════════════════════════════════════
-   MISSION & VISION — carousel bg + floating cards
+   MISSION & VISION — infinite marquee bg + floating cards
    ════════════════════════════════════════════════ */
 .mv {
   position: relative;
@@ -22,56 +22,70 @@
   overflow: hidden;
 }
 
-/* ── CAROUSEL BACKGROUND ── */
+/* ── CAROUSEL BACKGROUND — fills the full section ── */
 .carouselBg {
   position: absolute;
   inset: 0;
   overflow: hidden;
   z-index: 0;
+  /* vertically center the marquee strip */
+  display: flex;
+  align-items: center;
 }
 
-/* track is the positioning context; fills the bg */
-.carouselTrack {
-  position: absolute;
-  inset: 0;
+/* ── MARQUEE TRACK — flex row, animates leftward infinitely ── */
+/* 6 images × 4 duplicates = 24 slides; one full set = 6 × (360+20) = 2280px */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(calc(-6 * (360px + 20px))); }
 }
 
-/* each slide is absolutely positioned; JS sets transform */
-.carouselSlide {
-  position: absolute;
-  top: 50%;
-  width: 300px;
-  transform-origin: center center;
-  will-change: transform, opacity;
-  /* vertical centering — JS overrides transform so we compensate height here */
-  margin-top: -110px; /* half of slide height */
+.marqueeTrack {
+  display: flex;
+  gap: 20px;
+  flex-shrink: 0;
+  width: max-content;
+  animation: marquee 28s linear infinite;
+  /* pause on hover so user can see the images */
+}
+.marqueeTrack:hover {
+  animation-play-state: paused;
 }
 
-.carouselImg {
+/* ── INDIVIDUAL SLIDE ── */
+.marqueeSlide {
+  flex-shrink: 0;
+  width: 360px;
+}
+
+.marqueeImg {
   width: 100%;
-  height: 220px;
+  height: 260px;
   object-fit: cover;
-  border-radius: 14px;
+  border-radius: 16px;
   display: block;
-  filter: brightness(0.75) saturate(0.65);
-  box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+  filter: brightness(0.80) saturate(0.70);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.50);
 }
 
 /* dark navy opaque layer */
 .carouselOverlay {
   position: absolute;
   inset: 0;
-  background: rgba(5, 12, 28, 0.72);
+  background: rgba(5, 12, 28, 0.60);
   z-index: 1;
+  pointer-events: none;
 }
 
-/* vignette — dark navy bleeds in from all four edges */
+/* vignette — dark navy bleeds in from left/right edges strongly */
 .carouselVignette {
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at center, transparent 25%, rgba(5, 12, 28, 0.95) 100%);
+    linear-gradient(to right,  rgba(5,12,28,0.98) 0%, transparent 18%, transparent 82%, rgba(5,12,28,0.98) 100%),
+    linear-gradient(to bottom, rgba(5,12,28,0.55) 0%, transparent 30%, transparent 70%, rgba(5,12,28,0.55) 100%);
   z-index: 2;
+  pointer-events: none;
 }
 
 /* ── CARDS LAYER (above carousel) ── */
