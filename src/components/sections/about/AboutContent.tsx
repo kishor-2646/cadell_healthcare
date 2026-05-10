@@ -10,6 +10,7 @@ import slide3 from '../../../assets/mv/slide3.png';
 import slide4 from '../../../assets/mv/slide4.png';
 import slide5 from '../../../assets/mv/slide5.png';
 import slide6 from '../../../assets/mv/slide6.png';
+import aboutStoryImg from '../../../assets/about-story.png';
 
 const carouselImages = [slide1, slide2, slide3, slide4, slide5, slide6];
 
@@ -90,7 +91,7 @@ export const AboutStory: React.FC = () => {
         >
           <div className={styles.storyPhotoWrap}>
             <img
-              src="/src/assets/about-story.png"
+              src={aboutStoryImg}
               alt="Cadell Healthcare facility"
               className={styles.storyPhoto}
             />
