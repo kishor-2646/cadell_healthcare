@@ -88,8 +88,7 @@ export const ProductGrid: React.FC = () => {
                 <div className={styles.cardBody}>
                   <h3 className={styles.name}>{p.name}</h3>
                   <p className={styles.generic}>{p.genericName}</p>
-                  <p className={styles.desc}>{p.description}</p>
-                  <a href="#" className={styles.learn}>Learn More →</a>
+                  <a href="#" className={styles.learnMore}>Learn More →</a>
                 </div>
 
               </div>

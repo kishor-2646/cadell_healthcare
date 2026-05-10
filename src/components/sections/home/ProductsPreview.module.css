@@ -1,4 +1,4 @@
-.section { background: var(--bg-light); }
+.section { background: #eaf4fb; }
 .header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 48px; flex-wrap: wrap; gap: 16px; }
 .viewAll {
   display: inline-flex; align-items: center; gap: 8px;
@@ -19,7 +19,8 @@
   overflow: hidden;
   opacity: 0;
   transform: translateY(24px);
-  transition: all 0.45s var(--ease);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: opacity 0.45s var(--ease), transform 0.45s var(--ease), box-shadow 0s, border-color 0.2s ease;
 }
 .visible { opacity: 1 !important; transform: translateY(0) !important; }
 .card:hover {
@@ -63,7 +64,18 @@
   letter-spacing: 0.05em;
 }
 
-.cardBody { padding: 20px; background: var(--navy); }
+.cardBody {
+  padding: 20px;
+  background: linear-gradient(
+    145deg,
+    #0a1628 0%,
+    #0f2044 35%,
+    #132855 60%,
+    #1a3468 80%,
+    #0e1f45 100%
+  );
+  position: relative;
+}
 .name {
   font-family: var(--font-display);
   font-size: 18px; font-weight: 700;
