@@ -373,31 +373,132 @@
   flex-shrink: 0;
 }
 
-/* ── RESPONSIVE ── */
+/* ── RESPONSIVE — TABLET ── */
 @media (max-width: 900px) {
+  .hero {
+    height: auto;
+    min-height: 100vh;
+  }
+
   .body {
     flex-direction: column;
-    padding: 80px 28px 40px;
-    gap: 20px;
-    justify-content: center;
+    padding: 100px 24px 48px;
+    gap: 32px;
+    align-items: center;
+    justify-content: flex-start;
   }
+
+  /* LEFT column */
+  .left {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .tagline { justify-content: center; }
+
+  .description { max-width: 100%; }
+
+  .actions {
+    justify-content: center;
+    margin-bottom: 0;
+  }
+
+  /* RIGHT column */
   .right {
+    width: 100%;
     padding-right: 0;
     align-items: center;
-    width: 100%;
+    gap: 16px;
   }
-  .rightTop { width: 100%; }
-  .badges { width: 100%; justify-content: center; }
-  .contactLinks { justify-content: center; }
-  .heroLogoWrap { width: 220px; padding: 18px; }
-  .heroLogo { width: 175px; }
+
+  .rightTop {
+    width: 100%;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Logo box — smaller on tablet */
+  .heroLogoWrap {
+    width: 200px;
+    padding: 16px;
+    border-radius: 18px;
+  }
+  .heroLogo { width: 150px; }
+
+  /* Stats panel full width */
   .statsPanel { width: 100%; }
-  .statItem { padding: 16px 10px; }
+  .statItem { padding: 14px 8px; }
+  .statNumber { font-size: 28px; }
+  .statLabel { font-size: 8.5px; }
+
+  /* Badges centered */
+  .badges { justify-content: center; }
+
+  /* Contact links centered */
+  .contactLinks { justify-content: center; flex-wrap: wrap; gap: 12px; }
 }
 
+/* ── RESPONSIVE — MOBILE ── */
 @media (max-width: 600px) {
-  .body { padding: 80px 20px 32px; }
-  .headline { font-size: clamp(36px, 9vw, 52px); }
-  .contactLinks { gap: 12px; }
+  .hero {
+    height: auto;
+    min-height: 100svh;
+  }
+
+  .body {
+    padding: 80px 18px 40px;
+    gap: 28px;
+  }
+
+  /* Headline */
+  .headline {
+    font-size: clamp(32px, 8.5vw, 46px);
+    text-align: center;
+  }
+
+  .tagline { font-size: 9.5px; letter-spacing: 0.22em; }
+
+  .description {
+    font-size: 13.5px;
+    line-height: 1.7;
+    text-align: center;
+  }
+
+  /* Buttons stack nicely */
+  .actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .btnPrimary,
+  .btnSecondary {
+    width: 100%;
+    justify-content: center;
+    padding: 13px 20px;
+  }
+
+  /* Logo — compact */
+  .heroLogoWrap {
+    width: 160px;
+    padding: 12px;
+    border-radius: 14px;
+  }
+  .heroLogo { width: 120px; }
+
+  /* Stats — tighter */
+  .statItem { padding: 12px 6px; }
+  .statNumber { font-size: 24px; }
+  .sup { font-size: 13px; }
+  .statLabel { font-size: 7.5px; letter-spacing: 0.07em; }
+
+  /* Badges — smaller text, wrap */
+  .badge { font-size: 10.5px; padding: 4px 10px; }
+
+  /* Contact links — hide dividers, stack if needed */
+  .contactLinks { gap: 10px; }
   .contactDivider { display: none; }
+  .contactLink { font-size: 12px; }
 }

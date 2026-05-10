@@ -90,4 +90,25 @@
 .learnMore:hover { color: var(--gold); letter-spacing: 0.05em; }
 
 @media (max-width: 900px) { .grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 600px) { .grid { grid-template-columns: 1fr; } }
+
+@media (max-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* Compact image area */
+  .cardImg { height: 120px; }
+
+  /* Tighter badge */
+  .badge { font-size: 9px; padding: 3px 7px; top: 8px; right: 8px; }
+
+  /* Compact card body */
+  .cardBody { padding: 12px; }
+
+  .name { font-size: 13px; margin-bottom: 4px; }
+
+  .generic { font-size: 11px; line-height: 1.4; margin-bottom: 10px; }
+
+  .learnMore { font-size: 11px; }
+}
