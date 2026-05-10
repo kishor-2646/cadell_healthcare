@@ -4,27 +4,117 @@
   position: relative;
   overflow: hidden;
 }
-.section::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
+
+/* ── COLLAGE WRAPPER ── */
+.collage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 0;
 }
+
+/* ── EACH ROW ── */
+.collageRow {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+  width: max-content;
+}
+
+.rowLeft  { animation: scrollLeft  60s linear infinite; }
+.rowRight { animation: scrollRight 55s linear infinite; }
+
+@keyframes scrollLeft {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes scrollRight {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+/* ── TILE IMAGE — more visible now ── */
+.collageImg {
+  width: 90px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 6px;
+  opacity: 0.48;
+  flex-shrink: 0;
+  filter: saturate(0.55) brightness(0.85);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+}
+.collageImg:hover {
+  opacity: 0.75;
+  filter: saturate(0.9) brightness(1.1);
+}
+
+/* ── DARK NAVY OVERLAY ── */
+.collageMask {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 18, 40, 0.52);
+  z-index: 1;
+}
+
+/* ── EDGE VIGNETTE — dark navy on all borders ── */
 .overlay {
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 50% 50%, rgba(26,58,107,0.3) 0%, transparent 70%);
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background:
+    linear-gradient(to bottom, var(--navy) 0%, transparent 32%),
+    linear-gradient(to top,    var(--navy) 0%, transparent 32%),
+    linear-gradient(to right,  var(--navy) 0%, transparent 20%),
+    linear-gradient(to left,   var(--navy) 0%, transparent 20%),
+    radial-gradient(ellipse at 50% 50%, rgba(26,58,107,0.2) 0%, transparent 70%);
 }
+
+/* ── STATS GRID ── */
 .grid {
-  position: relative; z-index: 1;
-  display: grid; grid-template-columns: repeat(4, 1fr);
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
   gap: 40px;
 }
+
+/* ── STAT ITEM — golden hover effect ── */
 .item {
-  opacity: 0; transform: translateY(20px);
-  transition: all 0.5s var(--ease);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  border-radius: 14px;
+  padding: 20px 16px;
+  cursor: default;
+  position: relative;
 }
+.item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 14px;
+  background: rgba(201, 168, 76, 0);
+  border: 1px solid rgba(201, 168, 76, 0);
+  transition: background 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.item:hover::before {
+  background: rgba(201, 168, 76, 0.08);
+  border-color: rgba(201, 168, 76, 0.35);
+  box-shadow: 0 0 28px rgba(201, 168, 76, 0.18), inset 0 1px 0 rgba(201,168,76,0.1);
+}
+
 .visible { opacity: 1 !important; transform: translateY(0) !important; }
 
+/* ── RESPONSIVE ── */
 @media (max-width: 768px) { .grid { grid-template-columns: repeat(2, 1fr); gap: 32px; } }
 @media (max-width: 480px) { .grid { grid-template-columns: 1fr 1fr; } }
+
+@media (max-width: 600px) {
+  .rowLeft  { animation-duration: 90s; }
+  .rowRight { animation-duration: 80s; }
+  .collageImg { width: 70px; height: 50px; }
+}

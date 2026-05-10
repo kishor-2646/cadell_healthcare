@@ -1,4 +1,5 @@
-.stat { text-align: center; }
+.stat { text-align: center; position: relative; z-index: 1; }
+
 .value {
   font-family: var(--font-display);
   font-size: clamp(40px, 5vw, 64px);
@@ -8,6 +9,7 @@
   margin-bottom: 8px;
 }
 .suffix { font-size: 0.6em; color: var(--gold); }
+
 .label {
   font-size: 13px;
   font-weight: 600;
@@ -15,5 +17,27 @@
   text-transform: uppercase;
   color: var(--text-secondary);
 }
-.light .value { color: var(--white); }
-.light .label { color: rgba(255,255,255,0.7); }
+
+/* ── LIGHT variant — golden numbers ── */
+.light .value {
+  color: #c9a84c;
+  text-shadow: 0 0 32px rgba(201, 168, 76, 0.35), 0 2px 8px rgba(0,0,0,0.4);
+  transition: color 0.35s ease, text-shadow 0.35s ease;
+}
+.light .suffix {
+  color: rgba(201, 168, 76, 0.8);
+}
+.light .label {
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.14em;
+  transition: color 0.35s ease;
+}
+
+/* hover brightens gold glow */
+.light:hover .value {
+  color: #e8c96e;
+  text-shadow: 0 0 48px rgba(201, 168, 76, 0.7), 0 2px 16px rgba(0,0,0,0.3);
+}
+.light:hover .label {
+  color: rgba(255, 255, 255, 0.95);
+}

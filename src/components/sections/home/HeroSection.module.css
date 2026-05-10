@@ -4,6 +4,20 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;0,900;1,700;1,800&family=DM+Sans:wght@300;400;500;600&display=swap');
 
+/* ── ENTRANCE ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeLeft {
+  from { opacity: 0; transform: translateX(40px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
 /* ── SECTION: exact viewport height, no overflow ── */
 .hero {
   position: relative;
@@ -110,6 +124,8 @@
   text-transform: uppercase;
   color: rgba(255, 255, 255, 0.38);
   margin: 0 0 28px 0;
+  animation: fadeUp 0.7s ease both;
+  animation-delay: 0.1s;
 }
 
 .taglineLine {
@@ -131,6 +147,8 @@
   margin: 0 0 28px 0;
   text-shadow: 0 2px 24px rgba(0,0,0,0.5);
   letter-spacing: -0.02em;
+  animation: fadeUp 0.8s ease both;
+  animation-delay: 0.25s;
 }
 
 .italic {
@@ -152,6 +170,8 @@
   color: rgba(200, 218, 232, 0.62);
   margin: 0 0 36px 0;
   max-width: 480px;
+  animation: fadeUp 0.8s ease both;
+  animation-delay: 0.4s;
 }
 
 /* ── BUTTONS ── */
@@ -160,6 +180,8 @@
   gap: 14px;
   margin-bottom: 32px;
   flex-wrap: wrap;
+  animation: fadeUp 0.8s ease both;
+  animation-delay: 0.55s;
 }
 
 .btnPrimary {
@@ -232,8 +254,14 @@
   font-size: 11.5px;
   font-weight: 500;
   letter-spacing: 0.04em;
+  transition: background 0.25s ease, border-color 0.25s ease, color 0.25s ease;
+  cursor: default;
 }
-
+.badge:hover {
+  background: rgba(201, 168, 76, 0.14);
+  border-color: rgba(201, 168, 76, 0.5);
+  color: #c9a84c;
+}
 .badge svg { color: rgba(255,255,255,0.5); }
 
 /* ── RIGHT COLUMN ── */
@@ -243,8 +271,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0;                     /* spacing controlled by children */
+  gap: 0;
   padding-right: 10px;
+  animation: fadeLeft 0.9s ease both;
+  animation-delay: 0.3s;
 }
 
 /* ── RIGHT TOP GROUP: logo + stats + badges ── */
@@ -271,6 +301,11 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   flex-shrink: 0;
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.heroLogoWrap:hover {
+  box-shadow: 0 0 0 2px #c9a84c, 0 16px 48px rgba(201, 168, 76, 0.35);
+  transform: translateY(-4px);
 }
 
 .heroLogo {
@@ -301,18 +336,16 @@
   padding: 18px 12px;
   gap: 4px;
   flex: 1;
-  transition: background 0.2s;
+  transition: background 0.25s ease;
+  cursor: default;
 }
-
-.statItem:hover { background: rgba(255,255,255,0.10); }
-
-.statDivider {
-  width: 1px;
-  background: #f7aa2ebf;
-  margin: 12px 0;
-  align-self: stretch;
+.statItem:hover {
+  background: rgba(201, 168, 76, 0.12);
 }
-
+.statItem:hover .statNumber {
+  color: #c9a84c;
+  text-shadow: 0 0 20px rgba(201,168,76,0.5);
+}
 .statNumber {
   font-family: 'Playfair Display', Georgia, serif;
   font-size: 36px;
@@ -320,6 +353,14 @@
   color: #ffffff;
   line-height: 1;
   letter-spacing: -0.02em;
+  transition: color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.statDivider {
+  width: 1px;
+  background: #f7aa2ebf;
+  margin: 12px 0;
+  align-self: stretch;
 }
 
 .sup {
@@ -357,12 +398,12 @@
   color: rgba(255, 255, 255, 0.46);
   text-decoration: none;
   letter-spacing: 0.02em;
-  transition: color 0.2s;
+  transition: color 0.25s ease;
   white-space: nowrap;
   cursor: pointer;
 }
 
-.contactLink:hover { color: rgba(255, 255, 255, 0.85); }
+.contactLink:hover { color: #c9a84c; }
 .contactLink svg { flex-shrink: 0; }
 
 .contactDivider {
