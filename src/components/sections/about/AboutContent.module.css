@@ -13,26 +13,115 @@
   margin-top: 32px;
 }
 
-/* Mission & Vision */
-.mv { background: var(--navy); }
-.mvGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-.mvCard {
-  padding: 48px 40px;
-  border: 1px solid rgba(201,168,76,0.2);
-  border-radius: 16px;
-  text-align: center;
-  background: rgba(255,255,255,0.03);
-  transition: all 0.3s;
+/* ════════════════════════════════════════════════
+   MISSION & VISION — carousel bg + floating cards
+   ════════════════════════════════════════════════ */
+.mv {
+  position: relative;
+  background: var(--navy);
+  overflow: hidden;
 }
-.mvCard:hover { border-color: var(--gold); background: rgba(201,168,76,0.04); transform: translateY(-4px); }
-.mvIcon { font-size: 40px; margin-bottom: 16px; }
+
+/* ── CAROUSEL BACKGROUND ── */
+.carouselBg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* track is the positioning context; fills the bg */
+.carouselTrack {
+  position: absolute;
+  inset: 0;
+}
+
+/* each slide is absolutely positioned; JS sets transform */
+.carouselSlide {
+  position: absolute;
+  top: 50%;
+  width: 300px;
+  transform-origin: center center;
+  will-change: transform, opacity;
+  /* vertical centering — JS overrides transform so we compensate height here */
+  margin-top: -110px; /* half of slide height */
+}
+
+.carouselImg {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+  display: block;
+  filter: brightness(0.75) saturate(0.65);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.45);
+}
+
+/* dark navy opaque layer */
+.carouselOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 12, 28, 0.72);
+  z-index: 1;
+}
+
+/* vignette — dark navy bleeds in from all four edges */
+.carouselVignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 25%, rgba(5, 12, 28, 0.95) 100%);
+  z-index: 2;
+}
+
+/* ── CARDS LAYER (above carousel) ── */
+.mvInner {
+  position: relative;
+  z-index: 3;
+}
+
+.mvGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+
+.mvCard {
+  padding: 52px 44px;
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  border-radius: 20px;
+  text-align: center;
+  background: rgba(5, 12, 28, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.06);
+  transition: all 0.35s var(--ease);
+}
+.mvCard:hover {
+  border-color: var(--gold);
+  background: rgba(5, 12, 28, 0.70);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 0 1px rgba(201,168,76,0.25), inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
 .mvTitle {
   font-family: var(--font-display);
-  font-size: 28px; font-weight: 700;
-  color: var(--white); margin-bottom: 16px;
+  font-size: clamp(36px, 4vw, 56px);
+  font-weight: 900;
+  color: var(--white);
+  margin-bottom: 20px;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
 }
-.mvDivider { width: 48px; height: 3px; background: var(--gold); margin: 0 auto 24px; }
-.mvText { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.8; }
+
+.mvDivider {
+  width: 48px; height: 3px;
+  background: var(--gold);
+  border-radius: 2px;
+  margin: 0 auto 28px;
+}
+
+.mvText {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.62);
+  line-height: 1.85;
+}
 
 /* Testimonials */
 .testimonials { background: var(--bg-light); }
@@ -78,4 +167,6 @@
 @media (max-width: 900px) {
   .storyGrid, .mvGrid, .testGrid { grid-template-columns: 1fr; gap: 40px; }
   .testIllustration { height: 200px; }
+  .mvCard { padding: 36px 28px; }
+  .carouselSlide { width: 240px; }
 }

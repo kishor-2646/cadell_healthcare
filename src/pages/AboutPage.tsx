@@ -4,7 +4,11 @@ import { AboutStory, MissionVision, Testimonials } from '../components/sections/
 
 const AboutPage: React.FC = () => (
   <>
-    <PageHero eyebrow="About Us" title="About Us" />
+    <PageHero
+      eyebrow="About Us"
+      title="About Us"
+      backgroundImage="/src/assets/about-hero.png"
+    />
     <AboutStory />
     <MissionVision />
     <Testimonials />

@@ -32,13 +32,22 @@ export const ProductsPreview: React.FC = () => {
 
         <div className={styles.grid}>
           {products.slice(0, 6).map((p, i) => (
-            <div
-              key={p.id}
-              className={`${styles.card} ${isVisible ? styles.visible : ''}`}
-              style={{ transitionDelay: `${i * 0.08}s` }}
-            >
+            <div key={p.id} className={`${styles.card} ${isVisible ? styles.visible : ''}`} style={{ transitionDelay: `${i * 0.08}s` }}>
               <div className={styles.cardImg}>
-                <div className={styles.placeholder}>
+                {p.image ? (
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className={styles.productImg}
+                    onError={(e) => {
+                      // fallback: hide img and show placeholder sibling
+                      (e.currentTarget as HTMLImageElement).style.display = 'none';
+                      const sibling = e.currentTarget.nextElementSibling as HTMLElement;
+                      if (sibling) sibling.style.display = 'flex';
+                    }}
+                  />
+                ) : null}
+                <div className={styles.placeholder} style={p.image ? { display: 'none' } : {}}>
                   <span className={styles.placeholderText}>{p.name}</span>
                 </div>
                 <span className={styles.badge} style={{ background: categoryColors[p.category] || '#718096' }}>

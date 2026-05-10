@@ -1,27 +1,66 @@
 .hero {
   background: var(--navy);
+  background-size: cover;
+  background-position: center 20%;
+  background-repeat: no-repeat;
   padding: 80px 0;
   position: relative;
   overflow: hidden;
 }
-.hero::before {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
+
+/* ── DARK NAVY OPAQUE LAYER over image ── */
+.imageOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 12, 28, 0.72);
+  z-index: 1;
+}
+
+/* ── VIGNETTE — dark navy fading in from all borders ── */
+.vignette {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at center, transparent 40%, rgba(5, 12, 28, 0.85) 100%);
+  z-index: 2;
+}
+
+/* ── GRID PATTERN (only shown when no image) ── */
+.grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(201,168,76,0.04) 1px, transparent 1px),
     linear-gradient(90deg, rgba(201,168,76,0.04) 1px, transparent 1px);
   background-size: 60px 60px;
+  z-index: 1;
 }
+.gridHidden { display: none; }
+
+/* ── RADIAL ACCENT ── */
 .overlay {
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 30% 50%, rgba(26,58,107,0.5) 0%, transparent 70%);
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(26,58,107,0.35) 0%, transparent 70%);
+  z-index: 3;
 }
-.inner { position: relative; z-index: 1; text-align: center; }
+
+.inner {
+  position: relative;
+  z-index: 4;
+  text-align: center;
+}
+
 .eyebrow {
   display: block;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--gold); margin-bottom: 12px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 12px;
 }
+
 .title {
   font-family: var(--font-display);
   font-size: clamp(32px, 5vw, 52px);
