@@ -9,7 +9,7 @@ export const Footer: React.FC = () => (
       <div className="container">
         <div className={styles.ctaInner}>
           <div>
-            <h3 className={styles.ctaTitle}>Ready to partner with Cadell Healthcare?</h3>
+            <h3 className={styles.ctaTitle}>Ready to partner with [Company Name]?</h3>
             <p className={styles.ctaSub}>Connect with us for world-class pharmaceutical solutions.</p>
           </div>
           <Link to="/contact" className={styles.ctaBtn}>Get In Touch</Link>
@@ -25,7 +25,7 @@ export const Footer: React.FC = () => (
             <div className={styles.logo}>
               <div className={styles.logoMark}><span>C</span></div>
               <div>
-                <div className={styles.logoName}>cadell</div>
+                <div className={styles.logoName}>[brand]</div>
                 <div className={styles.logoSub}>Healthcare Pvt. Ltd.</div>
               </div>
             </div>
@@ -60,7 +60,7 @@ export const Footer: React.FC = () => (
               <FiMail size={14} />
               <div>
                 <span className={styles.contactLabel}>Support Available 24/7</span>
-                <a href="mailto:info@cadellhealthcare.com">info@cadellhealthcare.com</a>
+                <a href="mailto:info@yourdomain.com">info@yourdomain.com</a>
               </div>
             </div>
             <div className={styles.contactItem}>
@@ -85,7 +85,7 @@ export const Footer: React.FC = () => (
 
     <div className={styles.bottom}>
       <div className="container">
-        <p>© {new Date().getFullYear()} Copyright Reserved to Cadell Health Care Pvt. Ltd.</p>
+        <p>© {new Date().getFullYear()} Copyright Reserved to [Company Name] Health Care Pvt. Ltd.</p>
       </div>
     </div>
   </footer>

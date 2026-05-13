@@ -40,37 +40,44 @@ section { background: var(--bg-light); }
   border-color: rgba(201, 168, 76, 0.45);
 }
 
-/* ── IMAGE AREA ── */
+/* ── IMAGE PLACEHOLDER ── */
 .cardImg {
   position: relative;
   height: 180px;
   overflow: hidden;
 }
 
-.productImg {
+.placeholder {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  transition: transform 0.4s var(--ease);
+  background: linear-gradient(135deg, #0d1f3c 0%, #1a3a6b 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
-.card:hover .productImg { transform: scale(1.04); }
 
-/* fallback placeholder */
-.placeholder {
-  width: 100%; height: 100%;
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-  display: flex; align-items: center; justify-content: center;
+.placeholderIcon {
+  color: rgba(255, 255, 255, 0.20);
 }
+
 .placeholderText {
   font-family: var(--font-display);
-  font-size: 20px; font-weight: 800;
-  color: rgba(255, 255, 255, 0.15);
-  letter-spacing: 0.08em;
+  font-size: 15px;
+  font-weight: 800;
+  color: rgba(255, 255, 255, 0.30);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
-/* category tag — now inside card body */
+.placeholderSub {
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.18);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
 
 /* ── CARD BODY — clean white ── */
 .cardBody {
@@ -129,9 +136,6 @@ section { background: var(--bg-light); }
     grid-template-columns: repeat(2, 1fr);
     gap: 12px;
   }
-
-  /* Compact image area */
-  .cardImg { height: 120px; }
 
   /* Compact card body */
   .cardBody { padding: 12px; }

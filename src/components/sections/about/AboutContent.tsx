@@ -65,8 +65,8 @@ export const AboutStory: React.FC = () => {
             className={`${styles.storyRight} ${right.visible ? styles.revealIn : styles.revealOut}`}
           >
             <p>
-              Cadell Healthcare Pvt. Ltd. was established with a team of young, dynamic &amp; experienced
-              people in the year 2008. The name <em>Cadell</em> stands for Battle in Welsh. In the battle
+              [Company Name] Pvt. Ltd. was established with a team of young, dynamic &amp; experienced
+              people in the year 2008. The name stands for Battle in Welsh. In the battle
               against deadly lifestyle diseases, we are always committed in Saving Life Together with
               medical fraternity, social organizations &amp; the society.
             </p>
@@ -76,7 +76,7 @@ export const AboutStory: React.FC = () => {
               We are passionate and enthusiastic about our goal and highly optimistic about our future.
             </p>
             <p>
-              Cadell Healthcare promises to continue providing high quality medicines manufactured in
+              [Company Name] promises to continue providing high quality medicines manufactured in
               WHO-GMP facilities with good R&amp;D backup. The prime objective of the company is to
               become the most admired company by doctors, patients, employees and all channel partners.
             </p>
@@ -92,7 +92,7 @@ export const AboutStory: React.FC = () => {
           <div className={styles.storyPhotoWrap}>
             <img
               src={aboutStoryImg}
-              alt="Cadell Healthcare facility"
+              alt="[Company Name] facility"
               className={styles.storyPhoto}
             />
             {/* dark overlay + vignette */}

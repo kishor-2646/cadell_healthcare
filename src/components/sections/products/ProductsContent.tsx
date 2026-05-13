@@ -3,23 +3,6 @@ import { products, categories } from '../../../data/products';
 import { SectionHeader } from '../../ui/SectionHeader';
 import styles from './ProductsContent.module.css';
 
-/* ── product image imports — Vite resolves at build time ── */
-import ontelAm      from '../../../assets/products/ontel-am.png';
-import vilapil50    from '../../../assets/products/vilapil-50.png';
-import vilapilM     from '../../../assets/products/vilapil-m.png';
-import pantodellDsr from '../../../assets/products/pantodell-dsr.png';
-import cadellAz     from '../../../assets/products/cadell-az.png';
-import fitpro40     from '../../../assets/products/fitpro-40.png';
-
-const productImages: Record<string, string> = {
-  'ONTEL-AM':      ontelAm,
-  'VILAPIL-50':    vilapil50,
-  'VILAPIL-M':     vilapilM,
-  'PANTODELL-DSR': pantodellDsr,
-  'CADELL-AZ':     cadellAz,
-  'FITPRO-40':     fitpro40,
-};
-
 const categoryColors: Record<string, string> = {}; // unused — kept for safety
 
 export const ProductGrid: React.FC = () => {
@@ -46,29 +29,19 @@ export const ProductGrid: React.FC = () => {
 
         <div className={styles.grid}>
           {filtered.map((p) => {
-            const imgSrc = productImages[p.name];
             return (
               <div key={p.id} className={styles.card}>
 
-                {/* ── IMAGE AREA ── */}
+                {/* ── IMAGE PLACEHOLDER ── */}
                 <div className={styles.cardImg}>
-                  {imgSrc ? (
-                    <img
-                      src={imgSrc}
-                      alt={p.name}
-                      className={styles.productImg}
-                      onError={(e) => {
-                        (e.currentTarget as HTMLImageElement).style.display = 'none';
-                        const next = e.currentTarget.nextElementSibling as HTMLElement;
-                        if (next) next.style.display = 'flex';
-                      }}
-                    />
-                  ) : null}
-                  <div
-                    className={styles.placeholder}
-                    style={imgSrc ? { display: 'none' } : {}}
-                  >
+                  <div className={styles.placeholder}>
+                    <svg className={styles.placeholderIcon} width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="3" width="18" height="18" rx="2" />
+                      <circle cx="8.5" cy="8.5" r="1.5" />
+                      <polyline points="21 15 16 10 5 21" />
+                    </svg>
                     <span className={styles.placeholderText}>{p.name}</span>
+                    <span className={styles.placeholderSub}>Image coming soon</span>
                   </div>
                 </div>
 

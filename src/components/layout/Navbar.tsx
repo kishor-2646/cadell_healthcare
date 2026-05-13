@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
-import logo from '../../assets/logo.png';
 
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,7 +19,9 @@ const Navbar: React.FC = () => {
 
         {/* Logo — top left */}
         <Link to="/" className={styles.brand}>
-          <img src={logo} alt="Cadell Healthcare" className={styles.logo} />
+          <div className={styles.logoPlaceholder}>
+            <span className={styles.logoPlaceholderText}>YOUR LOGO</span>
+          </div>
         </Link>
 
         {/* Nav links — center */}

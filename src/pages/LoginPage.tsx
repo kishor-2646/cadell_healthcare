@@ -13,7 +13,7 @@ const LoginPage: React.FC = () => {
         <div className={styles.logoArea}>
           <div className={styles.logoMark}><span>C</span></div>
           <div>
-            <div className={styles.logoName}>cadell</div>
+            <div className={styles.logoName}>[brand]</div>
             <div className={styles.logoSub}>Healthcare Pvt. Ltd.</div>
           </div>
         </div>
