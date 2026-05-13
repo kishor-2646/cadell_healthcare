@@ -24,4 +24,6 @@ export interface Testimonial {
   name: string;
   role: string;
   content: string;
+  /** URL or imported asset path for the doctor's photo */
+  image: string;
 }

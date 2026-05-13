@@ -260,50 +260,207 @@
   line-height: 1.85;
 }
 
-/* Testimonials */
-.testimonials { background: var(--bg-light); }
-.testGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+/* ════════════════════════════════════════════════
+   TESTIMONIALS — synced doctor photo + card carousel
+   ════════════════════════════════════════════════ */
+.testimonials { background: var(--bg-light); overflow: hidden; }
 
-.testIllustration {
+.testGrid {
+  display: grid;
+  grid-template-columns: 420px 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+/* ── LEFT — stacked photo slides ── */
+.testPhotoPanel {
   position: relative;
-  height: 380px;
-  display: flex; align-items: center; justify-content: center;
+  width: 100%;
+  height: 520px;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow:
+    0 2px 0 0 var(--gold),
+    0 32px 80px rgba(0, 0, 0, 0.20);
+  flex-shrink: 0;
 }
-.testBg {
-  position: absolute; inset: 0;
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-  border-radius: 24px;
-  opacity: 0.08;
-}
-.testQuoteMark {
-  font-family: var(--font-display);
-  font-size: 200px;
-  font-style: italic;
-  font-weight: 900;
-  color: var(--navy);
-  opacity: 0.08;
-  line-height: 0.8;
-  user-select: none;
+
+/* accent ring behind the panel */
+.testPhotoRing {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  inset: -12px;
+  border-radius: 36px;
+  border: 2px solid rgba(201, 168, 76, 0.18);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* every slide stacks absolutely */
+.testPhotoSlide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(1.04) translateY(18px);
+  transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+  z-index: 1;
+}
+
+.testPhotoActive {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  z-index: 2;
+}
+
+.testPhotoExit {
+  opacity: 0;
+  transform: scale(0.96) translateY(-14px);
+  z-index: 1;
+}
+
+.testPhoto {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+/* bottom-fade overlay */
+.testPhotoOverlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(5, 12, 28, 0.78) 100%
+  );
+}
+
+/* name badge bottom-left */
+.testPhotoBadge {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 28px;
+  z-index: 3;
+}
+.testPhotoBadgeName {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 4px;
+}
+.testPhotoBadgeRole {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ── RIGHT — card track ── */
+.testRight {}
+
+/* wrapping container — clips sliding cards */
+.testCardTrack {
+  position: relative;
+  min-height: 240px;
+  margin: 24px 0;
 }
 
 .testCard {
+  position: absolute;
+  inset: 0;
   background: var(--white);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 32px;
-  margin: 24px 0;
+  border-radius: 16px;
+  padding: 32px 36px;
   box-shadow: var(--shadow-md);
+  opacity: 0;
+  transform: translateX(48px);
+  transition: opacity 0.28s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: opacity, transform;
+  pointer-events: none;
 }
-.stars { color: var(--gold); font-size: 18px; letter-spacing: 2px; margin-bottom: 16px; }
-.testName { font-family: var(--font-display); font-size: 18px; font-weight: 700; color: var(--text-primary); }
-.testRole { font-size: 12px; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; display: block; margin-bottom: 16px; }
-.testContent { font-size: 15px; color: var(--text-secondary); line-height: 1.7; font-style: italic; }
 
-.dots { display: flex; gap: 8px; }
+.testCardActive {
+  opacity: 1;
+  transform: translateX(0);
+  position: relative;        /* take up height */
+  pointer-events: auto;
+}
+
+.testCardExit {
+  opacity: 0;
+  transform: translateX(-48px);
+}
+
+.testQuoteIcon {
+  color: var(--gold);
+  opacity: 0.55;
+  margin-bottom: 14px;
+  display: block;
+}
+
+.stars { color: var(--gold); font-size: 16px; letter-spacing: 3px; margin-bottom: 14px; }
+
+.testContent {
+  font-size: 15px;
+  color: var(--text-secondary);
+  line-height: 1.80;
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+/* author row with mini avatar */
+.testAuthorRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border-top: 1px solid var(--border);
+  padding-top: 18px;
+}
+
+.testAvatarThumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top;
+  border: 2px solid var(--gold);
+  flex-shrink: 0;
+}
+
+.testName {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+.testRole {
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 700;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  display: block;
+}
+
+/* dots + arrows */
+.dots {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 8px;
+}
 .dot {
   width: 10px; height: 10px;
   border-radius: 50%;
@@ -311,12 +468,41 @@
   cursor: pointer;
   border: none;
   transition: all 0.2s;
+  flex-shrink: 0;
 }
-.dotActive { background: var(--gold); transform: scale(1.3); }
+.dotActive { background: var(--gold); transform: scale(1.35); }
+
+.arrowBtn {
+  margin-left: 6px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  font-size: 16px;
+  color: var(--text-primary);
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+.arrowBtn:hover {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
+}
+
+@media (max-width: 1024px) {
+  .testGrid { grid-template-columns: 340px 1fr; gap: 48px; }
+  .testPhotoPanel { height: 440px; }
+}
 
 @media (max-width: 900px) {
-  .storyGrid, .mvGrid, .testGrid { grid-template-columns: 1fr; gap: 40px; }
-  .testIllustration { height: 200px; }
+  .testGrid { grid-template-columns: 1fr; gap: 40px; }
+  .testPhotoPanel { height: 300px; }
+}
+
+@media (max-width: 900px) {
+  .storyGrid, .mvGrid { grid-template-columns: 1fr; gap: 40px; }
   .mvCard { padding: 36px 28px; }
   .carouselSlide { width: 240px; }
   .storyPhotoWrap { height: 300px; }

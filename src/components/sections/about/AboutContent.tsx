@@ -158,32 +158,97 @@ export const MissionVision: React.FC = () => (
 
 export const Testimonials: React.FC = () => {
   const [active, setActive] = useState(0);
-  const t = testimonials[active];
+  const [prev, setPrev] = useState<number | null>(null);
+  const [animating, setAnimating] = useState(false);
+
+  const goTo = (i: number) => {
+    if (i === active || animating) return;
+    setPrev(active);
+    setAnimating(true);
+    setActive(i);
+    setTimeout(() => {
+      setPrev(null);
+      setAnimating(false);
+    }, 300);
+  };
+
+  // Auto-advance every 5 s
+  useEffect(() => {
+    const id = setInterval(() => goTo((active + 1) % testimonials.length), 2000);
+    return () => clearInterval(id);
+  }, [active, animating]);
 
   return (
     <section className={`${styles.testimonials} section-pad`}>
       <div className="container">
         <div className={styles.testGrid}>
-          <div className={styles.testLeft}>
-            <div className={styles.testIllustration}>
-              <div className={styles.testBg} />
-              <div className={styles.testQuoteMark}>"</div>
-            </div>
+
+          {/* ── LEFT — doctor photo panel ── */}
+          <div className={styles.testPhotoPanel}>
+            {testimonials.map((t, i) => (
+              <div
+                key={t.id}
+                className={[
+                  styles.testPhotoSlide,
+                  i === active ? styles.testPhotoActive : '',
+                  i === prev   ? styles.testPhotoExit  : '',
+                ].join(' ')}
+              >
+                <img src={t.image} alt={t.name} className={styles.testPhoto} />
+                <div className={styles.testPhotoOverlay} />
+                <div className={styles.testPhotoBadge}>
+                  <span className={styles.testPhotoBadgeName}>{t.name}</span>
+                  <span className={styles.testPhotoBadgeRole}>{t.role}</span>
+                </div>
+              </div>
+            ))}
+            <div className={styles.testPhotoRing} />
           </div>
+
+          {/* ── RIGHT — testimonial cards ── */}
           <div className={styles.testRight}>
             <SectionHeader eyebrow="Testimonials" title="What They Say About Us" />
-            <div className={styles.testCard}>
-              <div className={styles.stars}>★★★★★</div>
-              <h4 className={styles.testName}>{t.name}</h4>
-              <span className={styles.testRole}>{t.role}</span>
-              <p className={styles.testContent}>{t.content}</p>
-            </div>
-            <div className={styles.dots}>
-              {testimonials.map((_, i) => (
-                <button key={i} className={`${styles.dot} ${active === i ? styles.dotActive : ''}`} onClick={() => setActive(i)} />
+
+            <div className={styles.testCardTrack}>
+              {testimonials.map((t, i) => (
+                <div
+                  key={t.id}
+                  className={[
+                    styles.testCard,
+                    i === active ? styles.testCardActive : '',
+                    i === prev   ? styles.testCardExit  : '',
+                  ].join(' ')}
+                >
+                  <div className={styles.stars}>★★★★★</div>
+                  <svg className={styles.testQuoteIcon} width="28" height="28" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/>
+                  </svg>
+                  <p className={styles.testContent}>{t.content}</p>
+                  <div className={styles.testAuthorRow}>
+                    <img src={t.image} alt={t.name} className={styles.testAvatarThumb} />
+                    <div>
+                      <h4 className={styles.testName}>{t.name}</h4>
+                      <span className={styles.testRole}>{t.role}</span>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
+
+            <div className={styles.dots}>
+              {testimonials.map((_, i) => (
+                <button
+                  key={i}
+                  className={`${styles.dot} ${active === i ? styles.dotActive : ''}`}
+                  onClick={() => goTo(i)}
+                  aria-label={`Testimonial ${i + 1}`}
+                />
+              ))}
+              <button className={styles.arrowBtn} onClick={() => goTo((active - 1 + testimonials.length) % testimonials.length)} aria-label="Previous">&#8592;</button>
+              <button className={styles.arrowBtn} onClick={() => goTo((active + 1) % testimonials.length)} aria-label="Next">&#8594;</button>
+            </div>
           </div>
+
         </div>
       </div>
     </section>
