@@ -4,7 +4,6 @@ import { StatCounter } from '../../ui/StatCounter';
 import { useScrollAnimation } from '../../../hooks/useScrollAnimation';
 import styles from './StatsSection.module.css';
 
-/* ── all available images cycled to fill 100 tiles ── */
 import ontelAm      from '../../../assets/products/ontel-am.png';
 import vilapil50    from '../../../assets/products/vilapil-50.png';
 import vilapilM     from '../../../assets/products/vilapil-m.png';
@@ -23,7 +22,6 @@ const SOURCE_IMGS = [
   slide1, slide2, slide3, slide4, slide5, slide6,
 ];
 
-/* build 5 rows × 20 tiles each */
 const ROWS = 5;
 const TILES_PER_ROW = 20;
 const collageRows = Array.from({ length: ROWS }, (_, row) =>
@@ -36,36 +34,45 @@ export const StatsSection: React.FC = () => {
   const { ref, isVisible } = useScrollAnimation(0.2);
 
   return (
-    <section className={styles.section} ref={ref as React.RefObject<HTMLElement>}>
-
-      {/* ── ANIMATED IMAGE COLLAGE BACKGROUND ── */}
-      <div className={styles.collage} aria-hidden="true">
-        {collageRows.map((row, rowIdx) => (
-          <div
-            key={rowIdx}
-            className={`${styles.collageRow} ${rowIdx % 2 === 0 ? styles.rowLeft : styles.rowRight}`}
-          >
-            {/* duplicate for seamless loop */}
-            {[...row, ...row].map((src, i) => (
-              <img key={i} src={src} alt="" className={styles.collageImg} />
-            ))}
-          </div>
-        ))}
+    <>
+      {/* ── TITLE — outside the dark strip ── */}
+      <div className={styles.titleBlock}>
+        <p className={styles.eyebrow}>Our Impact</p>
+        <h2 className={styles.title}>Numbers That Speak For Us</h2>
+        <p className={styles.subtitle}>
+          Trusted by doctors and patients across India, our growth reflects our commitment
+          to quality healthcare and pharmaceutical excellence.
+        </p>
       </div>
 
-      {/* dark overlay + edge gradients */}
-      <div className={styles.collageMask} />
-      <div className={styles.overlay} />
-
-      <div className="container">
-        <div className={styles.grid}>
-          {stats.map((s, i) => (
-            <div key={i} className={`${styles.item} ${isVisible ? styles.visible : ''}`} style={{ transitionDelay: `${i * 0.1}s` }}>
-              <StatCounter value={s.value} suffix={s.suffix} label={s.label} isActive={isVisible} light />
+      {/* ── DARK STRIP ── */}
+      <section className={styles.section} ref={ref as React.RefObject<HTMLElement>}>
+        <div className={styles.collage} aria-hidden="true">
+          {collageRows.map((row, rowIdx) => (
+            <div
+              key={rowIdx}
+              className={`${styles.collageRow} ${rowIdx % 2 === 0 ? styles.rowLeft : styles.rowRight}`}
+            >
+              {[...row, ...row].map((src, i) => (
+                <img key={i} src={src} alt="" className={styles.collageImg} />
+              ))}
             </div>
           ))}
         </div>
-      </div>
-    </section>
+
+        <div className={styles.collageMask} />
+        <div className={styles.overlay} />
+
+        <div className="container">
+          <div className={styles.grid}>
+            {stats.map((s, i) => (
+              <div key={i} className={`${styles.item} ${isVisible ? styles.visible : ''}`} style={{ transitionDelay: `${i * 0.1}s` }}>
+                <StatCounter value={s.value} suffix={s.suffix} label={s.label} isActive={isVisible} light />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   );
 };

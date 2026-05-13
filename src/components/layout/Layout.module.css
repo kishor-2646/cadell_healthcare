@@ -1,10 +1,10 @@
-/* Layout.module.css */
-/* Header is now sticky — no padding-top needed on main */
-
+/* On homepage: hero goes under the transparent fixed navbar — no offset */
 .main {
   min-height: 100vh;
 }
 
+/* On other pages: push content below the 72px fixed navbar */
 .mainWithOffset {
   min-height: 100vh;
+  padding-top: 72px;
 }

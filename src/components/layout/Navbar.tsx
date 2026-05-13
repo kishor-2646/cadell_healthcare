@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './Navbar.module.css';
-import logo from '../../assets/logobg.png';
+import logo from '../../assets/logo.png';
 
 const Navbar: React.FC = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -16,45 +16,15 @@ const Navbar: React.FC = () => {
 
   return (
     <header className={styles.header}>
+      <div className={styles.inner}>
 
-      {/* ── ROW 1: MENU · LOGO CENTER · LOGIN ── */}
-      <div className={styles.topBar}>
-
-        {/* Left — desktop placeholder / mobile hamburger */}
-        <div className={styles.topLeft}>
-          <button
-            className={styles.hamburger}
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-          >
-            <div className={styles.barsWrap}>
-              <span className={styles.bar} />
-              <span className={styles.bar} />
-              <span className={styles.bar} />
-            </div>
-            <span className={styles.menuLabel}>MENU</span>
-          </button>
-        </div>
-
-        {/* Center — Logo + Brand */}
+        {/* Logo — top left */}
         <Link to="/" className={styles.brand}>
-          <img src={logo} alt="Cadell Healthcare" className={styles.brandLogo} />
-          <div className={styles.brandText}>
-            <span className={styles.brandName}>Cadell</span>
-            <span className={styles.brandSub}>Healthcare Pvt. Ltd.</span>
-          </div>
+          <img src={logo} alt="Cadell Healthcare" className={styles.logo} />
         </Link>
 
-        {/* Right — Login */}
-        <div className={styles.topRight}>
-          <Link to="/login" className={styles.loginBtn}>Login</Link>
-        </div>
-
-      </div>
-
-      {/* ── ROW 2: NAV STRIP ── */}
-      <nav className={styles.navStrip}>
-        <div className={styles.navInner}>
+        {/* Nav links — center */}
+        <nav className={styles.nav}>
           {navLinks.map((link) => (
             <Link
               key={link.label}
@@ -64,10 +34,26 @@ const Navbar: React.FC = () => {
               {link.label}
             </Link>
           ))}
-        </div>
-      </nav>
+        </nav>
 
-      {/* ── MOBILE DRAWER ── */}
+        {/* CTA — right */}
+        <div className={styles.right}>
+          <Link to="/contact" className={styles.ctaBtn}>GET IN TOUCH</Link>
+          {/* Mobile hamburger */}
+          <button
+            className={styles.hamburger}
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={styles.bar} />
+            <span className={styles.bar} />
+            <span className={styles.bar} />
+          </button>
+        </div>
+
+      </div>
+
+      {/* Mobile drawer */}
       {menuOpen && (
         <div className={styles.mobileDrawer}>
           {navLinks.map((link) => (
@@ -80,12 +66,11 @@ const Navbar: React.FC = () => {
               {link.label}
             </Link>
           ))}
-          <Link to="/login" className={styles.mobileLoginBtn} onClick={() => setMenuOpen(false)}>
-            Login
+          <Link to="/contact" className={styles.mobileCtaBtn} onClick={() => setMenuOpen(false)}>
+            Get in Touch
           </Link>
         </div>
       )}
-
     </header>
   );
 };

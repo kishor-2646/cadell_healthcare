@@ -18,26 +18,15 @@
   color: var(--text-secondary);
 }
 
-/* ── LIGHT variant — golden numbers ── */
+/* ── LIGHT variant — white numbers, no hover ── */
 .light .value {
-  color: #c9a84c;
-  text-shadow: 0 0 32px rgba(201, 168, 76, 0.35), 0 2px 8px rgba(0,0,0,0.4);
-  transition: color 0.35s ease, text-shadow 0.35s ease;
+  color: #ffffff;
+  text-shadow: none;
 }
 .light .suffix {
-  color: rgba(201, 168, 76, 0.8);
+  color: rgba(255, 255, 255, 0.85);
 }
 .light .label {
   color: rgba(255, 255, 255, 0.65);
   letter-spacing: 0.14em;
-  transition: color 0.35s ease;
-}
-
-/* hover brightens gold glow */
-.light:hover .value {
-  color: #e8c96e;
-  text-shadow: 0 0 48px rgba(201, 168, 76, 0.7), 0 2px 16px rgba(0,0,0,0.3);
-}
-.light:hover .label {
-  color: rgba(255, 255, 255, 0.95);
 }

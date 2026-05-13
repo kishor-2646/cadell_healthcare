@@ -1,236 +1,156 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@400;500;600;700&display=swap');
+/* ═══════════════════════════════════════════
+   NAVBAR — transparent overlay on hero
+   ═══════════════════════════════════════════ */
 
-/* ══════════════════════════════════════════
-   HEADER — solid white, sits above hero
-   ══════════════════════════════════════════ */
 .header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
-  background: #ffffff;
-  box-shadow: 0 1px 0 rgba(10,22,40,0.08), 0 4px 24px rgba(10,22,40,0.06);
+  background: rgba(5, 12, 28, 0.55);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-/* ══════════════════════════════════════════
-   ROW 1 — three-column: left · center · right
-   ══════════════════════════════════════════ */
-.topBar {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  padding: 0 40px;
-  height: 90px;
-  border-bottom: 1px solid #e8e8ee;
-}
-
-/* ── LEFT SLOT ── */
-.topLeft {
+.inner {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 56px;
+  height: 72px;
+  gap: 32px;
 }
 
-/* ── HAMBURGER ── */
-.hamburger {
+/* ── LOGO ── */
+.brand {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.logo {
+  height: 48px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* ── NAV LINKS ── */
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  justify-content: center;
+}
+
+.navLink {
+  font-family: 'Manrope', 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.80);
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  letter-spacing: 0.02em;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.navLinkActive {
+  color: #1cc8aa !important;
+  font-weight: 600;
+}
+
+/* ── RIGHT: CTA + hamburger ── */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-shrink: 0;
+}
+
+.ctaBtn {
   display: inline-flex;
-  flex-direction: row;
   align-items: center;
-  gap: 10px;
-  background: none;
-  border: 1.5px solid #dde2ea;
-  border-radius: 8px;
-  padding: 8px 12px;
-  cursor: pointer;
-  transition: border-color 0.2s, background 0.2s;
+  background: #1a6bba;
+  color: #ffffff;
+  padding: 10px 24px;
+  border-radius: 6px;
+  font-family: 'Manrope', 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
 }
-.hamburger:hover { border-color: #c9a84c; background: rgba(201,168,76,0.04); }
 
-/* The 3 bar spans stacked in a column */
-.barsWrap {
-  display: flex;
+.ctaBtn:hover {
+  background: #1559a0;
+  transform: translateY(-1px);
+}
+
+/* ── HAMBURGER (mobile only) ── */
+.hamburger {
+  display: none;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
+  background: none;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  border-radius: 6px;
+  padding: 8px 10px;
+  cursor: pointer;
 }
 
 .bar {
   display: block;
   width: 20px;
   height: 2px;
-  background: #0a1628;
+  background: #ffffff;
   border-radius: 2px;
 }
 
-.menuLabel {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: #0a1628;
-}
-
-/* ── CENTER: BRAND ── */
-.brand {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  text-decoration: none;
-  padding: 10px 0;
-}
-.brand:hover { opacity: 0.90; }
-
-.brandLogo {
-  width: 68px;
-  height: 68px;
-  object-fit: contain;
-}
-
-.brandText {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.2;
-}
-
-.brandName {
-  font-family: 'Playfair Display', Georgia, serif;
-  font-size: 26px;
-  font-weight: 800;
-  color: #0a1628;
-  letter-spacing: 0.01em;
-}
-
-.brandSub {
-  font-family: 'DM Sans', sans-serif;
-  font-size: 10px;
-  font-weight: 600;
-  color: #8892b0;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  margin-top: 2px;
-}
-
-/* ── RIGHT SLOT ── */
-.topRight {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-.loginBtn {
-  display: inline-flex;
-  align-items: center;
-  padding: 9px 24px;
-  background: #0a1628;
-  color: #ffffff;
-  border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 13.5px;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-decoration: none;
-  text-transform: uppercase;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 14px rgba(10,22,40,0.18);
-}
-.loginBtn:hover {
-  background: #c9a84c;
-  color: #0a1628;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(201,168,76,0.35);
-}
-
-/* ══════════════════════════════════════════
-   ROW 2 — NAV STRIP (light gray)
-   ══════════════════════════════════════════ */
-.navStrip {
-  background: #f4f6f9;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-.navInner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px;
-}
-
-.navLink {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  padding: 0 28px;
-  height: 48px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #4a5568;
-  text-decoration: none;
-  letter-spacing: 0.04em;
-  transition: color 0.2s;
-  white-space: nowrap;
-}
-
-.navLink::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 28px; right: 28px;
-  height: 2.5px;
-  background: #c9a84c;
-  border-radius: 2px 2px 0 0;
-  transform: scaleX(0);
-  transform-origin: center;
-  transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
-}
-
-.navLink:hover { color: #0a1628; }
-.navLink:hover::after { transform: scaleX(1); }
-
-.navLinkActive {
-  color: #0a1628 !important;
-  font-weight: 700;
-}
-.navLinkActive::after { transform: scaleX(1) !important; }
-
-/* ══════════════════════════════════════════
-   MOBILE DRAWER
-   ══════════════════════════════════════════ */
+/* ── MOBILE DRAWER ── */
 .mobileDrawer {
-  position: absolute;
-  top: 100%;
-  left: 0; right: 0;
-  background: #ffffff;
-  border-top: 1px solid #e2e8f0;
-  box-shadow: 0 8px 32px rgba(10,22,40,0.12);
   display: flex;
   flex-direction: column;
-  padding: 12px 16px;
+  padding: 12px 20px 20px;
+  background: rgba(5, 12, 28, 0.96);
+  border-top: 1px solid rgba(255,255,255,0.08);
   gap: 4px;
-  z-index: 999;
 }
 
 .mobileLink {
-  padding: 12px 18px;
+  padding: 12px 16px;
   border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Manrope', 'DM Sans', sans-serif;
   font-size: 15px;
   font-weight: 500;
-  color: #4a5568;
+  color: rgba(255,255,255,0.80);
   text-decoration: none;
   transition: background 0.2s, color 0.2s;
 }
-.mobileLink:hover { background: #f4f6f9; color: #0a1628; }
-.mobileLinkActive { background: rgba(201,168,76,0.10); color: #0a1628 !important; font-weight: 700; }
 
-.mobileLoginBtn {
-  margin-top: 8px;
-  padding: 13px 18px;
-  background: #0a1628;
+.mobileLink:hover { background: rgba(255,255,255,0.08); color: #fff; }
+.mobileLinkActive  { color: #1cc8aa !important; font-weight: 600; }
+
+.mobileCtaBtn {
+  margin-top: 10px;
+  padding: 13px 16px;
+  background: #1a6bba;
   color: #ffffff;
   border-radius: 8px;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Manrope', 'DM Sans', sans-serif;
   font-weight: 700;
   font-size: 14px;
   text-align: center;
@@ -239,13 +159,10 @@
   text-transform: uppercase;
 }
 
-/* ══════════════════════════════════════════
-   RESPONSIVE
-   ══════════════════════════════════════════ */
+/* ── RESPONSIVE ── */
 @media (max-width: 768px) {
-  .topBar { padding: 0 20px; height: 72px; }
-  .brandLogo { width: 52px; height: 52px; }
-  .brandName { font-size: 20px; }
-  .navStrip { display: none; }
-  .topRight { display: none; }
+  .inner { padding: 0 20px; height: 64px; }
+  .nav   { display: none; }
+  .ctaBtn { display: none; }
+  .hamburger { display: flex; }
 }
