@@ -62,7 +62,7 @@
   box-shadow:
     0 2px 0 0 var(--gold),
     0 24px 80px rgba(0, 0, 0, 0.18);
-  border: 1px solid rgba(201, 168, 76, 0.25);
+  border: 1px solid rgba(21, 89, 160, 0.25);
 }
 
 .storyPhoto {
@@ -221,7 +221,7 @@
 
 .mvCard {
   padding: 52px 44px;
-  border: 1px solid rgba(201, 168, 76, 0.22);
+  border: 1px solid rgba(252, 252, 252, 0.22);
   border-radius: 20px;
   text-align: center;
   background: rgba(5, 12, 28, 0.55);
